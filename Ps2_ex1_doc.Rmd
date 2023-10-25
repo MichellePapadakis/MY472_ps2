@@ -1,0 +1,74 @@
+---
+title: "Documentation of how does the new argument in the dev branch of the function of main branch works"
+author: "Michelle Papadakis Barradas"
+date: "Thursday 02 November 2023 4pm"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(echo = FALSE) 
+```
+
+## Exercise 1
+- The dev branch in the Git repository was created to implement additional functionality in the provided R function, "add_phrase_column." 
+- In the main branch, the function takes a data frame as input and combines the column "name" and column"plays"  to create a new "phrase" column.
+- In the dev branch there is a new  argument, "uppercase," that was added to the function, allowing users to specify whether the "name" column should be converted to uppercase or not
+
+In the example provided, the built-in data set "band_instruments" was used. The function was called with the "uppercase" argument set to "TRUE," which resulted in converting the "name" column to uppercase before combining it with the "plays" column. The final data frame, "phrase_uppercase," reflects this transformation.
+
+This branch, "dev," preserves the integrity of the "main" branch. Once the functionality is approved,  it can be merged into the "main" branch. 
+
+Here is an example, the first table shows when uppercase = TRUE and the second one when uppercase = FALSE
+
+
+```{r exercise # 1, warning=FALSE, message=FALSE}
+
+library("tidyverse")
+#Example when second argument = TRUE
+# Creating a function and using  built in data base called "band_instruments"
+add_phrase_column <- function(data, uppercase = FALSE) {
+  # To combine the name and the instrument in a new column
+  data$phrase <- paste(data$name, "plays the", data$plays)
+  if (uppercase) {
+    data$name <-toupper(data$name)
+  }
+  return(data)  
+}
+#Example:
+data("band_instruments")
+band_instruments <- as.data.frame(band_instruments)
+#Calling the function
+phrase_uppercase <- add_phrase_column(band_instruments, uppercase = TRUE)
+# Print the result
+"Example when the argument uppercase is True"
+print(phrase_uppercase)
+
+
+
+
+#Example when second argument. = FALSE
+# Creating a function and using  built in data base called "band_instruments"
+add_phrase_column <- function(data, uppercase = FALSE) {
+  # To combine the name and the instrument in a new column
+  data$phrase <- paste(data$name, "plays the", data$plays)
+  if (uppercase) {
+    data$name <-toupper(data$name)
+  }
+  return(data)  
+}
+#Example:
+data("band_instruments")
+band_instruments <- as.data.frame(band_instruments)
+#Calling the function
+phrase_uppercase <- add_phrase_column(band_instruments, uppercase = FALSE)
+# Print the result
+"Example when the argument uppercase is false"
+print(phrase_uppercase)
+```
+
+## Appendix: All code in this assignment
+
+```{r ref.label=knitr::all_labels(), echo=TRUE, eval=FALSE} 
+{r knitr::opts_chunk$set(warning = FALSE, message = FALSE)}
