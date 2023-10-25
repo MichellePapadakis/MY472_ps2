@@ -11,7 +11,6 @@ add_phrase_column <- function(data, uppercase = FALSE) {
   return(data)  
 }
 #Example:
-library("tidyverse")
 data("band_instruments")
 band_instruments <- as.data.frame(band_instruments)
 
@@ -20,4 +19,3 @@ phrase_uppercase <- add_phrase_column(band_instruments, uppercase = TRUE)
 
 # Print the result
 print(phrase_uppercase)
-
