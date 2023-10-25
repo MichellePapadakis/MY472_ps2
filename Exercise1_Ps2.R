@@ -7,18 +7,18 @@ library("tidyverse")
 # Using  built in data base called "band_instruments"
 
 add_phrase_column <- function(data) {
-  # Combinar nombre e instrumento en la columna "phrase"
+  # Combining names and instruments in the column phrase
   data$phrase <- paste(data$name, "plays the", data$plays)
-  return(data)  # Devolver el data frame con la columna "phrase" agregada
+  return(data)  
 }
 
-# Ejemplo de uso:
+#Example 
 library("tidyverse")
 data("band_instruments")
 band_instruments <- as.data.frame(band_instruments)
 
-# Llamar a la función para agregar la columna de frase
+#Calling the function
 band_instruments_with_phrase <- add_phrase_column(band_instruments)
 
-# Imprimir el resultado
+# Print the result
 print(band_instruments_with_phrase)
